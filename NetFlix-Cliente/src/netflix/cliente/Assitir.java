@@ -1,5 +1,15 @@
 package netflix.cliente;
 
+import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.media.Manager;
+import javax.media.MediaLocator;
+import javax.media.NoPlayerException;
+import javax.media.Player;
 import javax.swing.JButton;
 
 public class Assitir extends javax.swing.JPanel {
@@ -17,7 +27,6 @@ public class Assitir extends javax.swing.JPanel {
         jLabel1.add(button);
         button.setBounds(320, 150, 106, 120);
         button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/botaoPlayer.png")));
-        
         
     }
     
@@ -72,17 +81,48 @@ public class Assitir extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void rodarFilme() throws MalformedURLException, IOException, NoPlayerException {
+        
+        // cria o player (que vai rodar o filme)
+        File videoFile = new File("C:\\Users\\alunolages\\Documents\\videoteste.mp4");
+        MediaLocator mediaLocator = new MediaLocator(videoFile.toURI().toURL());
+        Player player = Manager.createPlayer(mediaLocator);
+        
+        // cria o componente e une ao player e coloca no painel
+        Component videoComponent = player.getVisualComponent();
+        jPanel2.add(videoComponent);
+        
+        // roda o filme
+        player.start();
+
+        
+        // loop infinito para rodar o filme. 
+        // as interações (pause, etc) devem ser feitas por uma classe externa, via metodo
+        while (true) {
+            
+            
+            
+        }
+        
+    }
+    
     public void myconfig() {
         
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonMouseClicked(evt);
+                try {
+                    buttonMouseClicked(evt);
+                } catch (IOException ex) {
+                    Logger.getLogger(Assitir.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NoPlayerException ex) {
+                    Logger.getLogger(Assitir.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
     }
     
-    private void buttonMouseClicked(java.awt.event.MouseEvent evt) {
+    private void buttonMouseClicked(java.awt.event.MouseEvent evt) throws IOException, MalformedURLException, NoPlayerException {
         
         // quando o play é clicado, deve ser fazer todo o processo de requesição
         
@@ -90,6 +130,8 @@ public class Assitir extends javax.swing.JPanel {
         // faz a troca de paineis 
         
         jLabel1.setVisible(false);
+        
+        rodarFilme();
         
     }
 
