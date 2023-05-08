@@ -4,17 +4,21 @@ import javax.swing.JButton;
 
 public class Assitir extends javax.swing.JPanel {
 
-    JButton button = new JButton("Clique aqui");
+    JButton button = new JButton();
     
     public Assitir(String nomeFilme) {
         initComponents();
         definirBackgroundImagem(nomeFilme);
         criarBotaoEPosicionar();
+        myconfig();
     }
     
     public void criarBotaoEPosicionar() {
         jLabel1.add(button);
-        button.setBounds(50, 50, 50, 50);
+        button.setBounds(320, 150, 106, 120);
+        button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/botaoPlayer.png")));
+        
+        
     }
     
     public void definirBackgroundImagem(String nomeFilme) {
@@ -44,16 +48,16 @@ public class Assitir extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(726, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -68,6 +72,26 @@ public class Assitir extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void myconfig() {
+        
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonMouseClicked(evt);
+            }
+        });
+        
+    }
+    
+    private void buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        
+        // quando o play é clicado, deve ser fazer todo o processo de requesição
+        
+        // faz a troca de botoes (some o play grande, inclui o pequeno play e pause, etc)
+        // faz a troca de paineis 
+        
+        jLabel1.setVisible(false);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
