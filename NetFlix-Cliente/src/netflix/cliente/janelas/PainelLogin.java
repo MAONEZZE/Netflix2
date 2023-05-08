@@ -1,12 +1,12 @@
-package netflix.cliente;
+package netflix.cliente.janelas;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class Painel1 extends javax.swing.JPanel {
+public class PainelLogin extends javax.swing.JPanel {
 
-    public Painel1() {
+    public PainelLogin() {
         initComponents();
     }
 
@@ -169,10 +169,10 @@ public class Painel1 extends javax.swing.JPanel {
         //usuarioAtual = jTextField1.getText();
         
         // passa para o proximo painel (passando usuario)
-        Janela.p2 = new Painel2("aaaaa");
+        Janela.pFilme = new PainelFilmes("aaaaa");
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p1);
-        janela.add(Janela.p2, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pLog);
+        janela.add(Janela.pFilme, BorderLayout.CENTER);
         janela.pack();
             
         
@@ -181,10 +181,10 @@ public class Painel1 extends javax.swing.JPanel {
     private void bt_cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cadastroMouseClicked
         
         // passa para o painel de cadastro
-        Janela.p3 = new Painel3();
+        Janela.pCad = new PainelCadastro();
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p1);
-        janela.add(Janela.p3, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pLog);
+        janela.add(Janela.pCad, BorderLayout.CENTER);
         janela.pack();
         
     }//GEN-LAST:event_bt_cadastroMouseClicked

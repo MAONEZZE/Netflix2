@@ -1,8 +1,11 @@
-package netflix.cliente;
+package netflix.cliente.janelas;
 
-public class Painel3 extends javax.swing.JPanel {
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
-    public Painel3() {
+public class PainelCadastro extends javax.swing.JPanel {
+
+    public PainelCadastro() {
         initComponents();
     }
 
@@ -28,7 +31,7 @@ public class Painel3 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         bt_cadastrar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        bt_cadastro1 = new javax.swing.JButton();
+        bt_voltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -41,11 +44,6 @@ public class Painel3 extends javax.swing.JPanel {
         buttonGroup1.add(rb_basico);
         rb_basico.setForeground(new java.awt.Color(255, 255, 255));
         rb_basico.setText("Básico");
-        rb_basico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_basicoActionPerformed(evt);
-            }
-        });
 
         rb_boleto.setBackground(new java.awt.Color(51, 51, 51));
         buttonGroup2.add(rb_boleto);
@@ -88,22 +86,17 @@ public class Painel3 extends javax.swing.JPanel {
         bt_cadastrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         bt_cadastrar.setForeground(new java.awt.Color(255, 255, 255));
         bt_cadastrar.setText("Cadastrar");
-        bt_cadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_cadastrarMouseClicked(evt);
-            }
-        });
 
         jSeparator2.setBackground(new java.awt.Color(102, 102, 102));
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
 
-        bt_cadastro1.setBackground(new java.awt.Color(153, 0, 0));
-        bt_cadastro1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        bt_cadastro1.setForeground(new java.awt.Color(255, 255, 255));
-        bt_cadastro1.setText("Voltar");
-        bt_cadastro1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bt_voltar.setBackground(new java.awt.Color(153, 0, 0));
+        bt_voltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        bt_voltar.setForeground(new java.awt.Color(255, 255, 255));
+        bt_voltar.setText("Voltar");
+        bt_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bt_cadastro1MouseClicked(evt);
+                bt_voltarMouseClicked(evt);
             }
         });
 
@@ -143,7 +136,7 @@ public class Painel3 extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bt_cadastro1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_cadastrar)))
                 .addContainerGap())
@@ -181,28 +174,23 @@ public class Painel3 extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_cadastrar)
-                    .addComponent(bt_cadastro1))
+                    .addComponent(bt_voltar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rb_basicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_basicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rb_basicoActionPerformed
-
-    private void bt_cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cadastrarMouseClicked
-
-
-    }//GEN-LAST:event_bt_cadastrarMouseClicked
-
-    private void bt_cadastro1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cadastro1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bt_cadastro1MouseClicked
+    private void bt_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_voltarMouseClicked
+        Janela.pLog = new PainelLogin();
+        JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
+        janela.getContentPane().remove(Janela.pCad);
+        janela.add(Janela.pLog);
+        janela.pack();
+    }//GEN-LAST:event_bt_voltarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cadastrar;
-    private javax.swing.JButton bt_cadastro1;
+    private javax.swing.JButton bt_voltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;

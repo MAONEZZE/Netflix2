@@ -66,7 +66,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="bt_cadastro1" min="-2" pref="96" max="-2" attributes="0"/>
+                      <Component id="bt_voltar" min="-2" pref="96" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="bt_cadastrar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -113,7 +113,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bt_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bt_cadastro1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -148,9 +148,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="B&#xe1;sico"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_basicoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rb_boleto">
       <Properties>
@@ -275,9 +272,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_cadastrarMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
       <Properties>
@@ -289,7 +283,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="bt_cadastro1">
+    <Component class="javax.swing.JButton" name="bt_voltar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
@@ -303,7 +297,7 @@
         <Property name="text" type="java.lang.String" value="Voltar"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_cadastro1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bt_voltarMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
