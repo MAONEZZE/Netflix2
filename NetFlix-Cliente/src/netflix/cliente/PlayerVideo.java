@@ -1,4 +1,4 @@
-package netflix.cliente;
+/*package netflix.cliente;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -90,3 +90,4 @@ public class PlayerVideo extends JFrame {
     }
     
 }
+*/
