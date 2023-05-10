@@ -190,14 +190,18 @@ public class PainelFilmes extends javax.swing.JPanel {
     private void bt_eperaMilgraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseEntered
         
         // mouse entra
-        bt_eperaMilgra.setBounds(60, 70, 170, 240);
+        bt_clubeDaLuta.setBounds(214, 106, 170, 240);
+        bt_eperaMilgra.setBounds(214, 106, 170, 240);
+        bt_belezaAmericana.setBounds(394, 106, 170, 240);
         
     }//GEN-LAST:event_bt_eperaMilgraMouseEntered
 
     private void bt_eperaMilgraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseExited
         
         // mouse sai
-        bt_eperaMilgra.setBounds(95, 80, 135, 206);
+        bt_clubeDaLuta.setBounds(214, 106, 170, 240);
+        bt_eperaMilgra.setBounds(214, 106, 135, 206);
+        bt_belezaAmericana.setBounds(394, 106, 170, 240);
         
     }//GEN-LAST:event_bt_eperaMilgraMouseExited
 
