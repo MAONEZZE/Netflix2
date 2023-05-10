@@ -1,14 +1,14 @@
-package netflix.cliente;
+package netflix.cliente.janelas;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class Painel2 extends javax.swing.JPanel {
+public class PainelFilmes extends javax.swing.JPanel {
     
     private String usuarioAtual;
     
-    public Painel2(String usuarioAtual) {
+    public PainelFilmes(String usuarioAtual) {
         initComponents();
         this.usuarioAtual = usuarioAtual;
         jLabel3.setText(usuarioAtual);
@@ -202,40 +202,37 @@ public class Painel2 extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_eperaMilgraMouseExited
 
     private void bt_eperaMilgraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseClicked
-        
-        String nomeDoFime = "clubedaluta";
+        String nomeDoFime = "aesperadeummilagre";
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.a1 = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFime);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p2);
-        janela.add(Janela.a1, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pFilme);
+        janela.add(Janela.pAssistir, BorderLayout.CENTER);
         janela.pack();
         
     }//GEN-LAST:event_bt_eperaMilgraMouseClicked
 
     private void bt_belezaAmericanaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_belezaAmericanaMouseClicked
-        
-        String nomeDoFime = "aesperadeummilagre";
+        String nomeDoFime = "belezaamericana";
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.a1 = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFime);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p2);
-        janela.add(Janela.a1, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pFilme);
+        janela.add(Janela.pAssistir, BorderLayout.CENTER);
         janela.pack();
         
     }//GEN-LAST:event_bt_belezaAmericanaMouseClicked
 
     private void bt_clubeDaLutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clubeDaLutaMouseClicked
-        
-        String nomeDoFime = "belezaamericana";
+        String nomeDoFime = "clubedaluta";
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.a1 = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFime);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p2);
-        janela.add(Janela.a1, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pFilme);
+        janela.add(Janela.pAssistir, BorderLayout.CENTER);
         janela.pack();
         
     }//GEN-LAST:event_bt_clubeDaLutaMouseClicked
@@ -243,10 +240,10 @@ public class Painel2 extends javax.swing.JPanel {
     private void bt_desconcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_desconcMouseClicked
 
         // passa para o painel de cadastro
-        Janela.p3 = new Painel3();
+        Janela.pCad = new PainelCadastro();
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.p1);
-        janela.add(Janela.p3, BorderLayout.CENTER);
+        janela.getContentPane().remove(Janela.pLog);
+        janela.add(Janela.pCad, BorderLayout.CENTER);
         janela.pack();
 
     }//GEN-LAST:event_bt_desconcMouseClicked

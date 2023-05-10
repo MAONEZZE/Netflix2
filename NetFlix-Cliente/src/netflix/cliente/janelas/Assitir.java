@@ -1,4 +1,4 @@
-package netflix.cliente;
+package netflix.cliente.janelas;
 
 import java.awt.Component;
 import java.io.File;
@@ -14,20 +14,28 @@ import javax.swing.JButton;
 
 public class Assitir extends javax.swing.JPanel {
 
-    JButton button = new JButton();
+    JButton botaoPlay = new JButton();
     
     public Assitir(String nomeFilme) {
         initComponents();
         definirBackgroundImagem(nomeFilme);
         criarBotaoEPosicionar();
         myconfig();
+        
     }
     
     public void criarBotaoEPosicionar() {
+<<<<<<< HEAD:NetFlix-Cliente/src/netflix/cliente/Assitir.java
         jLabel1.add(button);
         button.setBounds(320, 150, 106, 120);
         button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/botaoPlayer.png")));
         
+=======
+        lb_fotoAssistir.add(botaoPlay);
+        botaoPlay.setBounds(320, 150, 106, 120);
+        botaoPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/botaoPlayer.png")));
+
+>>>>>>> 3483bf239bf01918d6f6601df5991cf408e019db:NetFlix-Cliente/src/netflix/cliente/janelas/Assitir.java
     }
     
     public void definirBackgroundImagem(String nomeFilme) {
@@ -45,39 +53,27 @@ public class Assitir extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lb_fotoAssistir = new javax.swing.JLabel();
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/capa-clube.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        lb_fotoAssistir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/capa-clube.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_fotoAssistir, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_fotoAssistir, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -108,7 +104,7 @@ public class Assitir extends javax.swing.JPanel {
     
     public void myconfig() {
         
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
+        botaoPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
                     buttonMouseClicked(evt);
@@ -129,14 +125,17 @@ public class Assitir extends javax.swing.JPanel {
         // faz a troca de botoes (some o play grande, inclui o pequeno play e pause, etc)
         // faz a troca de paineis 
         
+<<<<<<< HEAD:NetFlix-Cliente/src/netflix/cliente/Assitir.java
         jLabel1.setVisible(false);
         
         rodarFilme();
         
+=======
+        lb_fotoAssistir.setVisible(false);
+>>>>>>> 3483bf239bf01918d6f6601df5991cf408e019db:NetFlix-Cliente/src/netflix/cliente/janelas/Assitir.java
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lb_fotoAssistir;
     // End of variables declaration//GEN-END:variables
 }

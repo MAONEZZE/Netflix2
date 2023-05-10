@@ -7,7 +7,6 @@ import java.nio.Buffer;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import javax.media.Buffer;
 import javax.media.CannotRealizeException;
 import javax.media.Manager;
 import javax.media.NoPlayerException;
@@ -17,7 +16,7 @@ import javax.swing.JPanel;
 
 public class PlayerVideo extends JFrame {
     
-    private Queue<Buffer> bufferQueue = new LinkedList<Buffer>();
+    private Queue<Buffer> bufferQueue = new LinkedList();
     private Player player;
     
     public PlayerVideo() {

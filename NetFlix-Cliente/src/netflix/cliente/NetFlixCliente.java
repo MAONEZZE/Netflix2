@@ -1,5 +1,7 @@
 package netflix.cliente;
 
+import netflix.cliente.janelas.Janela;
+
 public class NetFlixCliente {
 
     public static void main(String[] args) {

@@ -1,2 +1,7 @@
 /NetFlix-Cliente/build/
+<<<<<<< HEAD
 /NetFlix-Cliente/dist/
+=======
+>>>>>>> 3483bf239bf01918d6f6601df5991cf408e019db
+/NetFlix-Cliente/nbproject/private/
+/NetFlixServer/nbproject/private/
