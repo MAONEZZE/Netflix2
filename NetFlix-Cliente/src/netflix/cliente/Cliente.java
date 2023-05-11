@@ -24,13 +24,13 @@ public abstract class Cliente {
 
     public Cliente() {}
 
-    public Cliente(String nome, String email, String senha, String metodoPagamento, String tipo, String comando) {
+    public Cliente(String nome, String email, String senha, String metodoPagamento, String tipo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.metodoPagamento = metodoPagamento;
         this.tipo = tipo;
-        this.comando = comando;//comando vai ser de acesso ou cadastro
+        this.comando = "cadastro";//comando vai ser de acesso ou cadastro
         
         try {
             sock = new Socket(PainelFilmes.srvAddr, PainelFilmes.srvPort);
@@ -62,6 +62,7 @@ public abstract class Cliente {
         json.put("Senha", this.senha);
         json.put("Pagamento", this.metodoPagamento);
         json.put("Tipo", this.tipo);
+        json.put("Comando", this.comando);
         
         enviarJson(json);
     }
