@@ -1,6 +1,15 @@
 package netflix.cliente.janelas;
 
 import java.awt.BorderLayout;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
@@ -8,10 +17,19 @@ public class PainelFilmes extends javax.swing.JPanel {
     
     private String usuarioAtual;
     
+    public static InetAddress srvAddr = null;
+    public static int srvPort = 50000;
+    public static String ip = "127.0.0.1";
+    public static Scanner input = new Scanner(System.in);
+    public static DataInputStream in;
+    public static DataOutputStream out;
+    public static Socket sock;
+    
     public PainelFilmes(String usuarioAtual) {
         initComponents();
         this.usuarioAtual = usuarioAtual;
         jLabel3.setText(usuarioAtual);
+        fazerConexaoServerTCP();
     }
 
     @SuppressWarnings("unchecked")
@@ -181,10 +199,51 @@ public class PainelFilmes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void enviarRequesicaoFilme(String nomeDoFilme) {
+        
+        try {
+            // Envia a mensagem
+            out.writeUTF(nomeDoFilme);
+        } catch (IOException ex) {
+            Logger.getLogger(PainelFilmes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Recebe a resposta
+        String data = "";
+        try {
+            data = in.readUTF();
+        } catch (IOException ex) {
+            Logger.getLogger(PainelFilmes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.print("\n[Response]: " + data);
+        
+    }
+    
+    public void fazerConexaoServerTCP() {
+        
+        try {
+            srvAddr = InetAddress.getByName(ip);
+        } catch (UnknownHostException e) {
+            System.err.println("Error!\n\tServer address: " +
+                    e.getMessage());
+            System.exit(1);
+        }
+        
+        try {
+            System.out.println("Connecting to " + srvAddr.toString()
+            + ":" + srvPort + "...");
+            sock = new Socket(srvAddr, srvPort);
+            in = new DataInputStream(sock.getInputStream());
+            out = new DataOutputStream(sock.getOutputStream());
+            
+        } catch (IOException e) {
+            System.err.print("\nError: " + e.getMessage());
+            System.exit(1);
+        }
+        
+    }
     
     private void bt_eperaMilgraMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseMoved
-        
-        
         
     }//GEN-LAST:event_bt_eperaMilgraMouseMoved
 
@@ -211,10 +270,13 @@ public class PainelFilmes extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_eperaMilgraMouseExited
 
     private void bt_eperaMilgraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseClicked
-        String nomeDoFime = "aesperadeummilagre";
+        String nomeDoFilme = "aesperadeummilagre";
+        
+        // envia a mensagem ao servidor com o nome do filme para ele começar o envio
+        enviarRequesicaoFilme(nomeDoFilme);
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.pAssistir = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFilme);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
         janela.getContentPane().remove(Janela.pFilme);
         janela.add(Janela.pAssistir, BorderLayout.CENTER);
@@ -223,10 +285,13 @@ public class PainelFilmes extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_eperaMilgraMouseClicked
 
     private void bt_belezaAmericanaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_belezaAmericanaMouseClicked
-        String nomeDoFime = "belezaamericana";
+        String nomeDoFilme = "belezaamericana";
+        
+        // envia a mensagem ao servidor com o nome do filme para ele começar o envio
+        enviarRequesicaoFilme(nomeDoFilme);
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.pAssistir = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFilme);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
         janela.getContentPane().remove(Janela.pFilme);
         janela.add(Janela.pAssistir, BorderLayout.CENTER);
@@ -235,10 +300,13 @@ public class PainelFilmes extends javax.swing.JPanel {
     }//GEN-LAST:event_bt_belezaAmericanaMouseClicked
 
     private void bt_clubeDaLutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clubeDaLutaMouseClicked
-        String nomeDoFime = "clubedaluta";
+        String nomeDoFilme = "clubedaluta";
+        
+        // envia a mensagem ao servidor com o nome do filme para ele começar o envio
+        enviarRequesicaoFilme(nomeDoFilme);
         
         // passa para o proximo painel (nome do filme como parametro)
-        Janela.pAssistir = new Assitir(nomeDoFime);
+        Janela.pAssistir = new Assitir(nomeDoFilme);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
         janela.getContentPane().remove(Janela.pFilme);
         janela.add(Janela.pAssistir, BorderLayout.CENTER);
@@ -270,7 +338,7 @@ public class PainelFilmes extends javax.swing.JPanel {
 
     private void bt_clubeDaLutaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clubeDaLutaMouseExited
         
-        // mouse sai
+        // mouse sai *Clube da luta*
         bt_clubeDaLuta.setBounds(68, 106, 135, 206);
         
     }//GEN-LAST:event_bt_clubeDaLutaMouseExited
@@ -284,7 +352,7 @@ public class PainelFilmes extends javax.swing.JPanel {
 
     private void bt_belezaAmericanaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_belezaAmericanaMouseExited
         
-        // mouse sai
+        // mouse sai *Beleza americana*
         bt_belezaAmericana.setBounds(358, 106, 135, 206);
         
     }//GEN-LAST:event_bt_belezaAmericanaMouseExited

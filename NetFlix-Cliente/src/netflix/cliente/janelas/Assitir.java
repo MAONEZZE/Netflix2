@@ -1,18 +1,9 @@
 package netflix.cliente.janelas;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.Manager;
@@ -21,7 +12,10 @@ import javax.media.NoPlayerException;
 import javax.media.Player;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import static netflix.cliente.janelas.PainelFilmes.in;
+import static netflix.cliente.janelas.PainelFilmes.out;
 
 public class Assitir extends javax.swing.JPanel {
 
@@ -33,6 +27,28 @@ public class Assitir extends javax.swing.JPanel {
         definirBackgroundImagem(nomeFilme);
         criarBotaoEPosicionar();
         myconfig();
+        
+    }
+    
+    public void encerrarFilme() {
+        
+        String msg = "encerrar";
+        
+        try {
+            // Envia a mensagem
+            out.writeUTF(msg);
+            } catch (IOException ex) {
+                Logger.getLogger(PainelFilmes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Recebe a resposta
+            String data = "";
+            try {
+                data = in.readUTF();
+            } catch (IOException ex) {
+                Logger.getLogger(PainelFilmes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.print("\n[Response]: " + data);
         
     }
     
@@ -87,18 +103,9 @@ public class Assitir extends javax.swing.JPanel {
 
     public void rodarFilme() throws MalformedURLException, IOException, NoPlayerException {
         
-        // cria o player (que vai rodar o filme)
-        File videoFile = new File("C:\\Users\\alunolages\\Documents\\videoteste.mp4");
-        MediaLocator mediaLocator = new MediaLocator(videoFile.toURI().toURL());
-        Player player = Manager.createPlayer(mediaLocator);
-        
-        // cria o componente e une ao player e coloca no painel
-        Component videoComponent = player.getVisualComponent();
-        //jPanel.add(videoComponent);
-        
-        // roda o filme
-        player.start();
+        // instalar o javaFX e criar um painel dele para rodar o filme e criar o player
 
+        
         
         // loop infinito para rodar o filme. 
         // as interações (pause, etc) devem ser feitas por uma classe externa, via metodo
@@ -140,74 +147,32 @@ public class Assitir extends javax.swing.JPanel {
     
     private void buttonMouseClicked(java.awt.event.MouseEvent evt) throws IOException, MalformedURLException, NoPlayerException {
         
-        // quando o play é clicado, deve ser fazer todo o processo de requesição
+        // desabilita a visibilidade de tudo e habilita a do label que vai ter o player do javaFX
         
-        // faz a conexão ao servidor (TCP)
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-        InetAddress srvAddr = null;
-        int srvPort = 50000;
-        String ip = "127.0.0.1";
-        Scanner input = new Scanner(System.in);
-        String outStr;
-        
-        try {
-            srvAddr = InetAddress.getByName(ip);
-        } catch (UnknownHostException e) {
-            System.err.println("Error!\n\tServer address: " +
-                    e.getMessage());
-            System.exit(1);
-        }
-        
-        try {
-            System.out.println("Connecting to " + srvAddr.toString()
-            + ":" + srvPort + "...");
-            Socket sock = new Socket(srvAddr, srvPort);
-            DataInputStream in = new DataInputStream(sock.getInputStream());
-            DataOutputStream out = new DataOutputStream(sock.getOutputStream());
-            
-            // Looping de comunicação
-            while (true) {                
-                // Obtém a mensagem a ser enviada
-                System.out.print("\nMessage: ");
-                outStr = input.nextLine();
-                
-                // Envia a mensagem
-                out.writeUTF(outStr);
-                
-                // Recebe a resposta
-                String data = in.readUTF();
-                System.out.print("\n[Response]: " + data);
-                
-                // Fecha a conexão
-                if ("<close>".equals(outStr)) {
-                    System.out.print("\nClosing client sock!");
-                    sock.shutdownInput();
-                    sock.shutdownOutput();
-                    break;
-                }
-            }
-            
-        } catch (IOException e) {
-            System.err.print("\nError: " + e.getMessage());
-            System.exit(1);
-        }
-        
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        
-        // faz a troca de botoes (some o play grande, inclui o pequeno play e pause, etc)
-        // faz a troca de paineis 
         
         botaoPlay.setVisible(false);
     }
     
     private void buttonMouseClicked2(java.awt.event.MouseEvent evt) throws IOException, MalformedURLException, NoPlayerException {
         
-        JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
-        janela.getContentPane().remove(Janela.pAssistir);
-        janela.add(Janela.pFilme);
-        janela.pack();
+        // botao voltar
         
+        // pergunta se o usuario quer sair do filme
+        int option = JOptionPane.showInternalConfirmDialog(null, "Tem certeza que deseja sair do filme?", "Netflix2", JOptionPane.INFORMATION_MESSAGE);  
+        
+        if (option == 0) {
+            // faz o encerramento do filme no servidor
+            encerrarFilme();
+
+            // volta para o painel de filmes
+            JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
+            janela.getContentPane().remove(Janela.pAssistir);
+            janela.add(Janela.pFilme);
+            janela.pack();
+        }
+        else {
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
