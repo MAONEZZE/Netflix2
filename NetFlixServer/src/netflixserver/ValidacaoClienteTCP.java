@@ -25,15 +25,24 @@ public class ValidacaoClienteTCP extends Thread {
         try {
             // Looping de recebimento de mensagens
             while (true) {
+                ArmazenadorCliente armC;
                 // Aguarda o recebimento da mensagem
                 String msgIn = in.readUTF();
                 System.out.println("\n\t[Received from " + clientSock.getInetAddress().toString() + ":" + clientSock.getPort() + "]: " + msgIn);
 
-                if(msgIn.contains(""))
+                
+                if(msgIn.contains("Basico")){
                 // Envia a resposta para o cliente
 //                System.out.println("\n\tSending response...");
 //                String msgOut = "Receibed by server!";
 //                out.writeUTF(msgOut);
+                    armC = new ArmazenadorCliente(msgIn);
+                    armC.serializadorClienteB();
+                }
+                else if(msgIn.contains("Premium")){
+                    armC = new ArmazenadorCliente(msgIn);
+                    armC.serializadorClienteP();
+                }
                 
                 
                 
