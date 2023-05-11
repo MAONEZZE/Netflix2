@@ -2,12 +2,15 @@ package netflix.cliente.janelas;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class PainelLogin extends javax.swing.JPanel {
 
     public PainelLogin() {
         initComponents();
+        jTextField1.setText("");
+        jTextField2.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -163,13 +166,27 @@ public class PainelLogin extends javax.swing.JPanel {
         //String usuarioAtual;
         
         // pega o login e senha e verifica se são validos
+        String usuario = jTextField1.getText();
+        String senha = jTextField2.getText();
         
-        // pega o usuario
+        // valida se os campos foram preenchidos corretamente
+        if (usuario.equals("") || senha.equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos", "Netflix2", JOptionPane.ERROR_MESSAGE);  
+        }
+        else {
+            if (senha.length() < 8) {
+                JOptionPane.showMessageDialog(null, "Senha inválida (deve ter no minimo 8 digitos)!", "Netflix2", JOptionPane.ERROR_MESSAGE);  
+            }
+        }
+        
+        // verifica (no servidor se os dados são validos)
+        // converte em JSON e envia para validar
+        
         
         //usuarioAtual = jTextField1.getText();
         
         // passa para o proximo painel (passando usuario)
-        Janela.pFilme = new PainelFilmes("aaaaa");
+        Janela.pFilme = new PainelFilmes(usuario);
         JFrame janela = (JFrame) SwingUtilities.getWindowAncestor(this);
         janela.getContentPane().remove(Janela.pLog);
         janela.add(Janela.pFilme, BorderLayout.CENTER);
