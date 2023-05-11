@@ -39,12 +39,24 @@ public class PainelFilmes extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_clubeDaLutaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_clubeDaLutaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_clubeDaLutaMouseExited(evt);
+            }
         });
 
         bt_belezaAmericana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/netflix/cliente/imagens/belezaAmericana.png"))); // NOI18N
         bt_belezaAmericana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_belezaAmericanaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_belezaAmericanaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_belezaAmericanaMouseExited(evt);
             }
         });
 
@@ -124,58 +136,51 @@ public class PainelFilmes extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(bt_clubeDaLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_eperaMilgra, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_belezaAmericana, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
             .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(bt_clubeDaLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_eperaMilgra, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_belezaAmericana, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 60, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(bt_desconc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_fecharProg)))
+                .addContainerGap()
+                .addComponent(bt_desconc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_fecharProg)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bt_belezaAmericana, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(bt_eperaMilgra, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(bt_belezaAmericana, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_clubeDaLuta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(bt_clubeDaLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bt_eperaMilgra, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_desconc)
                     .addComponent(bt_fecharProg))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     
     private void bt_eperaMilgraMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseMoved
         
@@ -189,19 +194,19 @@ public class PainelFilmes extends javax.swing.JPanel {
 
     private void bt_eperaMilgraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseEntered
         
-        // mouse entra
-        bt_clubeDaLuta.setBounds(214, 106, 170, 240);
-        bt_eperaMilgra.setBounds(214, 106, 170, 240);
-        bt_belezaAmericana.setBounds(394, 106, 170, 240);
+        // mouse entra *A espera de um milagre*
+        bt_clubeDaLuta.setBounds(50, 106, 135, 206);
+        bt_eperaMilgra.setBounds(196, 106, 170, 240);
+        bt_belezaAmericana.setBounds(376, 106, 135, 206);
         
     }//GEN-LAST:event_bt_eperaMilgraMouseEntered
 
     private void bt_eperaMilgraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eperaMilgraMouseExited
         
         // mouse sai
-        bt_clubeDaLuta.setBounds(214, 106, 170, 240);
+        bt_clubeDaLuta.setBounds(68, 106, 135, 206);
         bt_eperaMilgra.setBounds(214, 106, 135, 206);
-        bt_belezaAmericana.setBounds(394, 106, 170, 240);
+        bt_belezaAmericana.setBounds(358, 106, 135, 206);
         
     }//GEN-LAST:event_bt_eperaMilgraMouseExited
 
@@ -255,6 +260,34 @@ public class PainelFilmes extends javax.swing.JPanel {
     private void bt_fecharProgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_fecharProgMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_bt_fecharProgMouseClicked
+
+    private void bt_clubeDaLutaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clubeDaLutaMouseEntered
+        
+        // mouse entra *Clube da luta*
+        bt_clubeDaLuta.setBounds(34, 106, 170, 240);
+        
+    }//GEN-LAST:event_bt_clubeDaLutaMouseEntered
+
+    private void bt_clubeDaLutaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_clubeDaLutaMouseExited
+        
+        // mouse sai
+        bt_clubeDaLuta.setBounds(68, 106, 135, 206);
+        
+    }//GEN-LAST:event_bt_clubeDaLutaMouseExited
+
+    private void bt_belezaAmericanaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_belezaAmericanaMouseEntered
+        
+        // mouse entra *Beleza americana*
+        bt_belezaAmericana.setBounds(358, 106, 170, 240);
+        
+    }//GEN-LAST:event_bt_belezaAmericanaMouseEntered
+
+    private void bt_belezaAmericanaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_belezaAmericanaMouseExited
+        
+        // mouse sai
+        bt_belezaAmericana.setBounds(358, 106, 135, 206);
+        
+    }//GEN-LAST:event_bt_belezaAmericanaMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
