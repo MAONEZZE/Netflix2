@@ -9,6 +9,7 @@ public class NetFlixServer {
     public static void rodarServer(int porta) {
         
         try {
+            //5 --> quantidade de pessoas que poderão conectar ao mesmo tempo no servidor
             ServerSocket listenSock = new ServerSocket(porta, 5);
             
             // Aguarda conexões de clientes
@@ -19,7 +20,7 @@ public class NetFlixServer {
                         clientSock.getInetAddress().toString() + 
                         " at port " + clientSock.getPort());
                 
-                Connection c = new Connection(clientSock);
+                ValidacaoClienteTCP c = new ValidacaoClienteTCP(clientSock);
                 c.start();
             }
         } catch (IOException e) {
@@ -29,11 +30,10 @@ public class NetFlixServer {
     }
 
     public static void main(String[] args) {
-        
-        // define a porta que fará a conexão (TCP)
-        int porta = 50000;
-        
-        rodarServer(porta);
+        //Lembrete* a concção tcp é para a validação dos dados do usuario
+        //udp vai ser para a tranmissão do filme
+        //Porta sendo passada pelo argumento
+        rodarServer(Integer.parseInt(args[0]));
     }
     
 }

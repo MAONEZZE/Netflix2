@@ -5,12 +5,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Connection extends Thread {
+public class ValidacaoClienteTCP extends Thread {
     DataInputStream in;
     DataOutputStream out;
     Socket clientSock;
     
-    public Connection(Socket sock) {        
+    public ValidacaoClienteTCP(Socket sock) {        
         try {
             clientSock = sock;
             in = new DataInputStream(clientSock.getInputStream());
@@ -27,15 +27,17 @@ public class Connection extends Thread {
             while (true) {
                 // Aguarda o recebimento da mensagem
                 String msgIn = in.readUTF();
-                System.out.println("\n\t[Received from " +
-                        clientSock.getInetAddress().toString() +
-                        ":" + clientSock.getPort() + "]: " +
-                        msgIn);
+                System.out.println("\n\t[Received from " + clientSock.getInetAddress().toString() + ":" + clientSock.getPort() + "]: " + msgIn);
                 
+                if(msgIn.contains(""))
                 // Envia a resposta para o cliente
-                System.out.println("\n\tSending response...");
-                String msgOut = "Receibed by server!";
-                out.writeUTF(msgOut);
+//                System.out.println("\n\tSending response...");
+//                String msgOut = "Receibed by server!";
+//                out.writeUTF(msgOut);
+                
+                
+                
+                
                 
                 // Verifica se o cliente enviou o "<close>"
                 if ("<close>".equals(msgIn)) {
