@@ -8,7 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ArmazenadorCliente {
-    private String cliente;
+    private String cliente; //vai ter que criar um arraylist para cada tipo de conta ir colocando os novos clientes, aí sim serializa-los.
+                            // Assim ta errado
     
     public ArmazenadorCliente(String cliente){
         this.cliente = cliente;
