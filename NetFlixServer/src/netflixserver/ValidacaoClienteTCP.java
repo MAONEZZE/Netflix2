@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ValidacaoClienteTCP extends Thread {
     DataInputStream in;
@@ -15,6 +17,7 @@ public class ValidacaoClienteTCP extends Thread {
             clientSock = sock;
             in = new DataInputStream(clientSock.getInputStream());
             out = new DataOutputStream(clientSock.getOutputStream());
+            
         } catch (IOException ex) {
             System.err.println("Error: " + ex.getMessage());
         }        
@@ -23,24 +26,25 @@ public class ValidacaoClienteTCP extends Thread {
     @Override
     public void run() {
         try {
+            List<String> listaClienteB = new ArrayList();
+            List<String> listaClienteP = new ArrayList();
+            ArmazenadorCliente armC;
             // Looping de recebimento de mensagens
             while (true) {
-                ArmazenadorCliente armC;
                 // Aguarda o recebimento da mensagem
                 String msgIn = in.readUTF();
                 System.out.println("\n\t[Received from " + clientSock.getInetAddress().toString() + ":" + clientSock.getPort() + "]: " + msgIn);
 
                 
                 if(msgIn.contains("Basico")){
-                // Envia a resposta para o cliente
-//                System.out.println("\n\tSending response...");
-//                String msgOut = "Receibed by server!";
-//                out.writeUTF(msgOut);
-                    armC = new ArmazenadorCliente(msgIn);
+                    listaClienteB.add(msgIn);
+                    armC = new ArmazenadorCliente(listaClienteB, clientSock);
                     armC.serializadorClienteB();
                 }
                 else if(msgIn.contains("Premium")){
-                    armC = new ArmazenadorCliente(msgIn);
+                    
+                    listaClienteB.add(msgIn);
+                    armC = new ArmazenadorCliente(listaClienteP, clientSock);
                     armC.serializadorClienteP();
                 }
                 

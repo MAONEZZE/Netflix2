@@ -1,28 +1,38 @@
 package netflixserver;
 
+import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ArmazenadorCliente {
-    private String cliente; //vai ter que criar um arraylist para cada tipo de conta ir colocando os novos clientes, aí sim serializa-los.
-                            // Assim ta errado
+    private List<String> cliente; 
+    private Socket clientSock;
+    private DataOutputStream out;
     
-    public ArmazenadorCliente(String cliente){
-        this.cliente = cliente;
+    public ArmazenadorCliente(List<String> listaCliente, Socket clientSock){
+        this.cliente = listaCliente;
+        this.clientSock = clientSock;
     }
 
-    private void serializador(String nomeArquivo, String cliente){
+    private void serializador(String nomeArquivo, List<String> listaCliente){
         try {
             FileOutputStream arquivo = new FileOutputStream(nomeArquivo);
-            ObjectOutputStream out = new ObjectOutputStream(arquivo);
+            ObjectOutputStream outSerializador = new ObjectOutputStream(arquivo);
             
-            out.writeObject(cliente);
-            out.close();
+            outSerializador.writeObject(cliente);
+            outSerializador.close();
             arquivo.close();
+            
+            //Enviar para o cliente que o cliente foi cadastrado
+            out = new DataOutputStream(clientSock.getOutputStream());
+            out.writeUTF("Cliente cadastrado no servidor");
+            
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ArmazenadorCliente.class.getName()).log(Level.SEVERE, null, ex);
