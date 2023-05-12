@@ -6,7 +6,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,9 +17,8 @@ public class PainelFilmes extends javax.swing.JPanel {
     private String usuarioAtual;
     
     public static InetAddress srvAddr = null;
-    public static int srvPort = 50000;
-    public static String ip = "127.0.0.1";
     public static Scanner input = new Scanner(System.in);
+    //==============================//
     public static DataInputStream in;
     public static DataOutputStream out;
     public static Socket sock;
@@ -29,7 +27,6 @@ public class PainelFilmes extends javax.swing.JPanel {
         initComponents();
         this.usuarioAtual = usuarioAtual;
         jLabel3.setText(usuarioAtual);
-        fazerConexaoServerTCP();
     }
 
     @SuppressWarnings("unchecked")
@@ -216,30 +213,6 @@ public class PainelFilmes extends javax.swing.JPanel {
             Logger.getLogger(PainelFilmes.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.print("\n[Response]: " + data);
-        
-    }
-    
-    public void fazerConexaoServerTCP() {
-        
-        try {
-            srvAddr = InetAddress.getByName(ip);
-        } catch (UnknownHostException e) {
-            System.err.println("Error!\n\tServer address: " +
-                    e.getMessage());
-            System.exit(1);
-        }
-        
-        try {
-            System.out.println("Connecting to " + srvAddr.toString()
-            + ":" + srvPort + "...");
-            sock = new Socket(srvAddr, srvPort);
-            in = new DataInputStream(sock.getInputStream());
-            out = new DataOutputStream(sock.getOutputStream());
-            
-        } catch (IOException e) {
-            System.err.print("\nError: " + e.getMessage());
-            System.exit(1);
-        }
         
     }
     
