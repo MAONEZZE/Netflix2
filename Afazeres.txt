@@ -1,0 +1,5 @@
+1- criar um repositorio para cada filme na maquina local e fragmentar os filmes
+
+2- colocar o numero de fragmentos de cada filme no codigo (server - rodarFilme) - ffmpeg (ubuntu)
+
+3- 

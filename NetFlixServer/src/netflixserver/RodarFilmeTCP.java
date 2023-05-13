@@ -3,16 +3,17 @@ package netflixserver;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ValidacaoClienteTCP extends Thread {
+public class RodarFilmeTCP extends Thread {
+
     DataInputStream in;
     DataOutputStream out;
     Socket clientSock;
-
-    public ValidacaoClienteTCP(Socket sock) {  
+    
+    public RodarFilmeTCP(Socket sock) {
+        
         try {
             clientSock = sock;
             in = new DataInputStream(clientSock.getInputStream());
@@ -20,32 +21,54 @@ public class ValidacaoClienteTCP extends Thread {
             
         } catch (IOException ex) {
             System.err.println("Error: " + ex.getMessage());
-        }        
+        }
+        
     }
     
-    @Override
     public void run() {
+        
         try {
-            List<String> listaClienteB = new ArrayList();
-            List<String> listaClienteP = new ArrayList();
-            ArmazenadorCliente armC;
-            // Looping de recebimento de mensagens
+            
             while (true) {
+                // variaveis de inicia
+                int numeroFragmentos = 0;
+                String urlDosFragmentos = "C:\\Users\\alunolages\\Documents\\";
+                
                 // Aguarda o recebimento da mensagem
                 String msgIn = in.readUTF();
                 System.out.println("\n\t[Received from " + clientSock.getInetAddress().toString() + ":" + clientSock.getPort() + "]: " + msgIn);
 
-                
-                if(msgIn.contains("Basico")){
-                    listaClienteB.add(msgIn);
-                    armC = new ArmazenadorCliente(listaClienteB, clientSock);
-                    armC.serializadorClienteB();
-                }
-                else if(msgIn.contains("Premium")){
+                // verifica se o comando é um nome de filme
+                if(msgIn.contains("clubedaluta") || msgIn.contains("aesperadeummilagre") || msgIn.contains("belezaamericana")){
                     
-                    listaClienteB.add(msgIn);
-                    armC = new ArmazenadorCliente(listaClienteP, clientSock);
-                    armC.serializadorClienteP();
+                    urlDosFragmentos = urlDosFragmentos.concat(msgIn);
+                    switch (msgIn) {
+                        case "clubedaluta":
+                            numeroFragmentos = 982;
+                            break;
+                        case "aesperadeummilagre":
+                            numeroFragmentos =1032;
+                            break;
+                        case "belezaamericana":
+                            numeroFragmentos = 3978;
+                            break;
+                    }
+                    
+                    // faz o envio dos fragmentos via protocolo (UDP)
+                    
+                    int srvPort = clientSock.getPort() - 1;
+                    InetAddress srvIPAddr = clientSock.getInetAddress();
+                    
+                    // loop para enviar todos os fragmentos
+                    for (int i=0;i<(numeroFragmentos+1);i++) {
+                        
+                        
+                        
+                    }
+                    
+                }
+                else {
+                    
                 }
                 
                 
@@ -71,8 +94,11 @@ public class ValidacaoClienteTCP extends Thread {
             // Elimina a thread
             interrupt();
             
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
+        
     }
+    
 }
