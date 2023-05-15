@@ -22,6 +22,9 @@ public class NetFlixServer {
                 
                 ValidacaoClienteTCP c = new ValidacaoClienteTCP(clientSock);
                 c.start();
+                
+                RodarFilmeTCP r = new RodarFilmeTCP(clientSock);
+                r.start();
             }
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());

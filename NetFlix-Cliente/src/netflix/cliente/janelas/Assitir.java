@@ -3,7 +3,12 @@ package netflix.cliente.janelas;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.Manager;
@@ -102,6 +107,73 @@ public class Assitir extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void rodarFilme() throws MalformedURLException, IOException, NoPlayerException {
+        
+        // abre a porta de conexão UDP para receber o filme
+        int porta = Janela.pFilme.srvPort - 1;
+        
+        try {
+            
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
+            // Cria pacote UDP vazio
+                
+            DatagramSocket serverSock = new DatagramSocket(porta);
+            System.out.print(" [OK]");
+            
+            // Cria os buffers de comunicação
+            // 65535 - 20 IP - 8 UDP = 65507
+            byte[] rxData = new byte[65507];
+            byte[] txData = new byte[65507];
+            
+            // Looping de comunicação
+            while (true) {
+                // Cria pacote UDP vazio
+                DatagramPacket rxPkt = new DatagramPacket(rxData, rxData.length);
+                
+                // Aguarda o recebimento de uma mensagem
+                System.out.println("\nWaiting messages...");
+                serverSock.receive(rxPkt);
+                
+                // Trata a mensagem recebida
+                // Obtém o IP e a porta do cliente
+                InetAddress srcIPAddr = rxPkt.getAddress();
+                int srcPort = rxPkt.getPort();
+                
+                // Obtém o payload da mensagem
+                rxData = rxPkt.getData();
+                
+                String msg = new String(rxData, StandardCharsets.UTF_8);
+                msg = msg.substring(0, rxPkt.getLength());
+                
+                // Imprime na tela a mensagem recebida
+                System.out.println("Mensagem recebida:");
+                System.out.println("\tIP origem: " + srcIPAddr);
+                System.out.println("\tPorta origem: " + srcPort); 
+                System.out.println("\tTamanho mensagem: " +rxPkt.getLength());
+                System.out.println("\tMensagem: " + msg);
+                
+                // Cria mensagem de resposta do servidor
+                String txMsg = "ACK";
+                txData = txMsg.getBytes(StandardCharsets.UTF_8);
+                
+                // Cria o pacote de resposta do servidor para o cliente
+                DatagramPacket txPkt = new DatagramPacket(
+                        txData, txData.length, srcIPAddr, srcPort);
+                
+                // Envia a mensagem de resposta ao cliente
+                System.out.println("Enviando a resposta para o cliente!");
+                serverSock.send(txPkt);
+            }
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            
+        }
+        catch (SocketException ex) {
+            System.err.println("\n\tSocket error: " + ex.getMessage());
+            System.exit(1);
+        } catch (IOException ex) {
+            System.err.println("\n\tMessage error: " + ex.getMessage());
+            System.exit(1);
+        }
         
         // instalar o javaFX e criar um painel dele para rodar o filme e criar o player
 
