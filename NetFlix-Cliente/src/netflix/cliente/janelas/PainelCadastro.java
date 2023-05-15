@@ -2,11 +2,15 @@ package netflix.cliente.janelas;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static netflix.cliente.janelas.PainelFilmes.out;
 import org.json.simple.JSONObject;
 
 public class PainelCadastro extends javax.swing.JPanel {
@@ -251,7 +255,7 @@ public class PainelCadastro extends javax.swing.JPanel {
                 throw new InputMismatchException();
             }
             
-            PainelFilmes.sock = new Socket(srvAddr, srvPort);
+            PainelFilmes.sock = new Socket(PainelFilmes.srvAddr, Janela.srvPort);
             PainelFilmes.in = new DataInputStream(PainelFilmes.sock.getInputStream());
             PainelFilmes.out = new DataOutputStream(PainelFilmes.sock.getOutputStream());
             JSONObject json = new JSONObject();
@@ -261,12 +265,14 @@ public class PainelCadastro extends javax.swing.JPanel {
             json.put("Tipo", rbPremiumBasico);
             json.put("Forma de Pagamento", rbBoletoCartao);
             
-            out.writeUTF();
+            PainelFilmes.out.writeUTF("aaa");
             
             
             
         }catch(InputMismatchException ex){
             JOptionPane.showMessageDialog(null, "Todos os campos têm que estar preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(PainelCadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_cadastrarMouseClicked
 

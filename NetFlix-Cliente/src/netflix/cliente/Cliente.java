@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import netflix.cliente.janelas.Janela;
 import org.json.simple.JSONObject;
 import netflix.cliente.janelas.PainelFilmes;
 
@@ -33,7 +34,7 @@ public abstract class Cliente {
         this.comando = "cadastro";//comando vai ser de acesso ou cadastro
         
         try {
-            sock = new Socket(PainelFilmes.srvAddr, PainelFilmes.srvPort);
+            sock = new Socket(PainelFilmes.srvAddr, Janela.srvPort);
             in = new DataInputStream(sock.getInputStream());
             out = new DataOutputStream(sock.getOutputStream());
 

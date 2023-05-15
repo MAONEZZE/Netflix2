@@ -10,7 +10,7 @@ public class Janela extends javax.swing.JFrame {
     static PainelCadastro pCad;
     static Assitir pAssistir;
     static InetAddress srvAddr = null;
-    static int srvPort = 0;
+    public static int srvPort = 0;
     
     public Janela(InetAddress srvAddr, int srvPort) {
         initComponents();

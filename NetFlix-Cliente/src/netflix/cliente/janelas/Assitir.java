@@ -109,7 +109,7 @@ public class Assitir extends javax.swing.JPanel {
     public void rodarFilme() throws MalformedURLException, IOException, NoPlayerException {
         
         // abre a porta de conexão UDP para receber o filme
-        int porta = Janela.pFilme.srvPort - 1;
+        int porta = Janela.srvPort - 1;
         
         try {
             
