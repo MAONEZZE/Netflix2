@@ -1,6 +1,7 @@
 package netflix.cliente.janelas;
 
 import java.awt.BorderLayout;
+import java.net.InetAddress;
 
 public class Janela extends javax.swing.JFrame {
 
@@ -8,9 +9,13 @@ public class Janela extends javax.swing.JFrame {
     static PainelFilmes pFilme;
     static PainelCadastro pCad;
     static Assitir pAssistir;
+    static InetAddress srvAddr = null;
+    static int srvPort = 0;
     
-    public Janela() {
+    public Janela(InetAddress srvAddr, int srvPort) {
         initComponents();
+        this.srvAddr = srvAddr;
+        this.srvPort = srvPort;
         this.setLayout(new BorderLayout());
         pLog = new PainelLogin();
         
